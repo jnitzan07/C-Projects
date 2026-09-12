@@ -14,15 +14,17 @@ typedef struct Node {
  *i'm a little confused please explain
 */
 
-// passing in **Node means "the address of the address of a node", which allows you to change the value of that address of the address
-// for example, I have a "Node* head" in my main(). That's the address of a node (the head node). If I pass that address to your function,
-// you can walk my stack. BUT you wouldn't be able to tell me "I'm changing what your head points to".
-// this is a lot like if you have a function say do_10x(int value), and you want to give me back 10*value.
-// the most common way to do that would be with the return value, e.g.:
-// int do_10X(int value) { return 10*value; }
-// BUT maybe you want it to be a void for some reason, or return true/false (like "success"). so then you want to get
-// not just the value itself, but the *address* of the value, so you can change it. e.g.:
-// void do_10X(int* value_addr) { int value = *value_addr; *value_addr = value * 10; } // this takes the value stored at value_addr and stores it *10 at the same address
+/*
+passing in **Node means "the address of the address of a node", which allows you to change the value of that address of the address
+for example, I have a "Node* head" in my main(). That's the address of a node (the head node). If I pass that address to your function,
+you can walk my stack. BUT you wouldn't be able to tell me "I'm changing what your head points to".
+this is a lot like if you have a function say do_10x(int value), and you want to give me back 10*value.
+the most common way to do that would be with the return value, e.g.:
+int do_10X(int value) { return 10*value; }
+BUT maybe you want it to be a void for some reason, or return true/false (like "success"). so then you want to get
+not just the value itself, but the *address* of the value, so you can change it. e.g.:
+void do_10X(int* value_addr) { int value = *value_addr; *value_addr = value * 10; } // this takes the value stored at value_addr and stores it *10 at the same address
+*/
 
 // for your functions, get_index and print_stack just need to walk the stack, so all you need is the head - you're not going to change it
 // but push_node and pop_node will actually *change* the head of the stack. so if I just pass the head, you can't change it (it's like an int).
@@ -40,8 +42,8 @@ typedef struct Node {
 
 void push_node(Node **head, int new_val);
 void pop_node(Node **head);
-void get_index(Node **head, int index);
-void print_stack(Node **head);
+void get_index(Node *head, int index);
+void print_stack(Node *head);
 void swap_nodes(Node **head, int i, int j);
 
 #endif //EE200_STACKS_H

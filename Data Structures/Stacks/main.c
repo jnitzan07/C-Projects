@@ -8,46 +8,44 @@
 // cool that you factored out the "utilities", but you can leave them as functions in your main file, they don't need their own header etc. because they're not really reusable
 
 int main() {
+    Node *stack = NULL;
 
-        Node *stack = NULL;
+    int user_input;
+    int index;
+    int new_val;
 
-        int user_input;
-        int index;
-        int new_val;
+    bool running = true;
 
-        bool running = true;
+    while (running) {
+        get_next_action(&user_input);
 
-        while (running) {
-            get_next_action(&user_input);
+        if (user_input == 0) {
+            //adds a new head node
+            get_new_value(&new_val);
+            push_node(&stack, new_val);
 
-            if (user_input == 0) {
-                //adds a new head node
-                get_new_value(&new_val);
-                push_node(&stack, new_val);
-
-            } else if (user_input == 1) {
+        } else if (user_input == 1) {
             //deletes the head value
             pop_node(&stack);
 
         } else if (user_input == 2) {
-                //prints all the vals
-                print_stack(&stack);
+            //prints all the vals
+            print_stack(stack);
 
-            } else if (user_input == 3) {
-                //gets the value of a specific index
-                get_index_input(&index);
-                get_index(&stack, index);
+        } else if (user_input == 3) {
+            //gets the value of a specific index
+            get_index_input(&index);
+            get_index(stack, index);
 
-            } else if (user_input == 4) {
-                int i;
-                int j;
-                get_indexes_to_swap(&i, &j);
-                swap_nodes(&stack, i, j);
+        } else if (user_input == 4) {
+            int i;
+            int j;
+            get_indexes_to_swap(&i, &j);
+            swap_nodes(&stack, i, j);
 
-            } else if (user_input == 9) {
-                running = false;
-            }
+        } else if (user_input == 9) {
+            running = false;
         }
-
+    }
     return 0;
 }

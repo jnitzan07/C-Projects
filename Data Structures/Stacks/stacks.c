@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 #include "stacks.h"
 
@@ -25,10 +24,10 @@ void pop_node(Node **head) {
 }
 
 
-void get_index(Node **head, int index) {
+void get_index(Node *head, int index) {
     //prints the value at a certain index
     int count = 0;
-    Node *pointer = *head;
+    Node *pointer = head;
     while (pointer != NULL) {
         if (count == index) {
             printf("Value: %d", pointer -> value);
@@ -78,13 +77,13 @@ void swap_nodes(Node **head, int i, int j) {
 }
 
 
-void print_stack(Node **head) {
+void print_stack(Node *head) {
     if (head == NULL) {
         printf("\nStack is empty!");
         return;
     }
 
-    Node *pointer = *head;
+    Node *pointer = head;
 
     //basically just calling it once beforehand to fix formatting with the <-
     printf("%d", pointer -> value);
