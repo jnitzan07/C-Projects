@@ -8,7 +8,11 @@ add_executable(Attendance_9-2-26 "Attendance/Attendance_9-2-26.c")
 add_executable(Attendance_9-11-26 "Attendance/Attendance_9-11-26.c")
 
 # Data Structures
-add_executable(stacks "Data Structures/stacks.c")
+add_executable(stacks_main "Data Structures/stacks_main.c"
+        "Data Structures/stacks.h"
+        "Data Structures/stacks.c"
+        "Data Structures/stacks_utilities.c"
+        "Data Structures/stacks_utilities.h")
 
 # Algorithms
 add_executable(random_number_generation "Algorithms/random_number_generation.c")
