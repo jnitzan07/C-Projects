@@ -1,30 +1,26 @@
-cmake_minimum_required(VERSION 4.3)
-project(EE200)
+cmake_minimum_required(VERSION 3.26)
+project(EE200 C)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_C_STANDARD 11)
 
-include_directories(.)
+# Attendance
+add_executable(Attendance_9-2-26 "Attendance/Attendance_9-2-26.c")
+add_executable(Attendance_9-11-26 "Attendance/Attendance_9-11-26.c")
 
-add_executable(EE200
-        .idea/.gitignore
-        .idea/editor.xml
-        .idea/EE200.iml
-        .idea/misc.xml
-        .idea/modules.xml
-        .idea/workspace.xml
-        Attendance_9-11-26.c
-        Attendance_9-11-26.exe
-        Attendance_9-2-26.c
-        Attendance_9-2-26.exe
-        Homework_1-13-10-26.c
-        Homework_1-13-10-26.exe
-        random_number_generation.c
-        random_number_generation.exe
-        random_number_generation_example.c
-        random_number_generation_example.exe
-        stacks.c
-        stacks.exe
-        tic-tac-toe.c
-        tic-tac-toe.exe
-        utilities.c
-        utilities.h)
+# Data Structures
+add_executable(stacks "Data Structures/stacks.c")
+
+# Algorithms
+add_executable(random_number_generation "Algorithms/random_number_generation.c")
+
+add_executable(random_number_generation_example
+        Algorithms/random_number_generation_example.c
+        Algorithms/utilities.c
+        Algorithms/utilities.h
+)
+
+# Homework
+add_executable(Homework_1-13-10-26 Homework/Homework_1-13-10-26.c)
+
+# Misc
+add_executable(tic-tac-toe Misc/tic-tac-toe.c)
