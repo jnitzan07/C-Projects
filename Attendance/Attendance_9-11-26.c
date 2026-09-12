@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdbool.h>
+
 int main(void) {
     bool running = true;
     int num_set;
