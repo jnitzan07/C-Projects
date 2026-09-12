@@ -38,6 +38,12 @@ int main() {
                 get_index_input(&index);
                 get_index(&stack, index);
 
+            } else if (user_input == 4) {
+                int i;
+                int j;
+                get_indexes_to_swap(&i, &j);
+                swap_nodes(&stack, i, j);
+
             } else if (user_input == 9) {
                 running = false;
             }

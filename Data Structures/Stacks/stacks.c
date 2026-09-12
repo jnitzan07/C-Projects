@@ -41,6 +41,42 @@ void get_index(Node **head, int index) {
     printf("\nIndex is greater then stack length!");
 }
 
+void swap_nodes(Node **head, int i, int j) {
+    int count = 0;
+    Node *pointer = *head;
+    Node *temp_pointer;
+
+    int temp_val;
+
+    while (count != i) {
+        if (pointer = NULL) {
+            printf("invalid index");
+            return;
+        }
+        pointer = pointer -> next;
+        count++;
+    }
+
+    temp_pointer = pointer;
+    temp_val = pointer -> value;
+
+    pointer = pointer -> next;
+    count++;
+
+    while (count != j) {
+        if (pointer = NULL) {
+            printf("invalid index");
+            return;
+        }
+
+        pointer = pointer -> next;
+        count++;
+    }
+
+    temp_pointer -> value = pointer -> value;
+    pointer -> value = temp_val;
+}
+
 
 void print_stack(Node **head) {
     if (head == NULL) {
