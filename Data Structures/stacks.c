@@ -4,10 +4,6 @@
 
 #include "stacks.h"
 
-// move this into a .h file, and add function declarations for push_node(), pop_node(), get_index(), and print_stack()
-// change your main to call the functions from your .h file instead of implementing inline
-
-
 void push_node(Node **head, int new_val) {
     //adds a value (new head)
     Node *new_node = (Node *)malloc(sizeof(Node));

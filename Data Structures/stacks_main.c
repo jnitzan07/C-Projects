@@ -25,23 +25,23 @@
                 get_new_value(&new_val);
                 push_node(&stack, new_val);
 
-        } else if (user_input == 1) {
+            } else if (user_input == 1) {
             //deletes the head value
             pop_node(&stack);
 
         } else if (user_input == 2) {
-            //prints all the vals
-            print_stack(&stack);
+                //prints all the vals
+                print_stack(&stack);
 
-        } else if (user_input == 3) {
-            //gets the value of a specific index
-            get_index_input(&index);
-            get_index(&stack, index);
+            } else if (user_input == 3) {
+                //gets the value of a specific index
+                get_index_input(&index);
+                get_index(&stack, index);
 
-        } else if (user_input == 9) {
-            running = false;
+            } else if (user_input == 9) {
+                running = false;
+            }
         }
-    }
 
     return 0;
 }
