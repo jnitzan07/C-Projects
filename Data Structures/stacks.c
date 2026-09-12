@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define MAX_COLS 10000;
+#define MAX_COLS 10000; // no semicolons on #defines
 #define MAX_ROWS 10000;
 
+// move this into a .h file, and add function declarations for push_node(), pop_node(), get_index(), and print_stack()
+// change your main to call the functions from your .h file instead of implementing inline
 struct Node {
     int value;
     struct Node *next;
