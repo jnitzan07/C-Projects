@@ -7,7 +7,7 @@
 
 
 
-    int main() {
+int main() {
 
         Node *stack = NULL;
 
