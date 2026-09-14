@@ -40,6 +40,7 @@ void get_index(Node *head, int index) {
     printf("\nIndex is greater then stack length!");
 }
 
+
 void swap_nodes(Node **head, int i, int j) {
     int count = 0;
     Node *pointer = *head;
