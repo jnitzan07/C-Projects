@@ -38,8 +38,6 @@ void do_10X(int* value_addr) { int value = *value_addr; *value_addr = value * 10
 // the clean concept is for push_node to take Node** head, Node* new_node, and for pop_node to take Node** head, and return Node* the node that was popped.
 // that way the calling code code malloc() the node, and free() the node it asked you to remove
 
-// make it good, and add a swap_nodes(int i, int j) -- that switches the location of node i and node j
-
 void push_node(Node **head, int new_val);
 void pop_node(Node **head);
 void get_index(Node *head, int index);

@@ -5,7 +5,6 @@
 #include "stacks.h"
 #include "stacks_utilities.h"
 
-// cool that you factored out the "utilities", but you can leave them as functions in your main file, they don't need their own header etc. because they're not really reusable
 
 int main() {
     Node *stack = NULL;

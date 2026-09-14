@@ -23,11 +23,13 @@ void pop_node(Node **head) {
     free(pointer);
 }
 
-
+// this should probably return something :)
 void get_index(Node *head, int index) {
     //prints the value at a certain index
     int count = 0;
     Node *pointer = head;
+
+    // stylistically this isn't the nicest way imo. I would do a for(pointer=head; index>0; index--) { if (pointer == NULL) break; } and then return pointer
     while (pointer != NULL) {
         if (count == index) {
             printf("Value: %d", pointer -> value);
@@ -40,7 +42,7 @@ void get_index(Node *head, int index) {
     printf("\nIndex is greater then stack length!");
 }
 
-void swap_nodes(Node **head, int i, int j) {
+void swap_nodes(Node **head, int i, int j) { // you wrote such a nice get_index... why not use it? ptr_i = get_index(i); ptr_j = get_index(j); deal with NULLs
     int count = 0;
     Node *pointer = *head;
     Node *temp_pointer;
@@ -86,6 +88,7 @@ void print_stack(Node *head) {
     Node *pointer = head;
 
     //basically just calling it once beforehand to fix formatting with the <-
+    // nice :)
     printf("%d", pointer -> value);
     pointer = pointer -> next;
 
