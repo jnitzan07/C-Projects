@@ -1,12 +1,14 @@
 #ifndef EE200_STACKS_UTILITIES_H
 #define EE200_STACKS_UTILITIES_H
 
-void get_new_value(int* new_val);
+int get_new_value();
 
-void get_next_action(int* user_input);
+int get_next_action();
 
-void get_index_input(int* index);
+int view_item_get_index_input();
 
 void get_indexes_to_swap(int* i, int* j);
+
+void change_item_get_index_input(int* index, int* new_value);
 
 #endif //EE200_STACKS_UTILITIES_H

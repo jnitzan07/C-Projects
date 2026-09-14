@@ -16,11 +16,11 @@ int main() {
     bool running = true;
 
     while (running) {
-        get_next_action(&user_input);
+        user_input = get_next_action();
 
         if (user_input == 0) {
             //adds a new head node
-            get_new_value(&new_val);
+            new_val = get_new_value();
             push_node(&stack, new_val);
 
         } else if (user_input == 1) {
@@ -33,14 +33,18 @@ int main() {
 
         } else if (user_input == 3) {
             //gets the value of a specific index
-            get_index_input(&index);
-            printf("Value: %d", get_index(stack, index));
+            printf("Value: %d", get_index(stack, view_item_get_index_input()));
 
         } else if (user_input == 4) {
             int i;
             int j;
             get_indexes_to_swap(&i, &j);
             swap_nodes(&stack, i, j);
+
+        } else if (user_input == 5) {
+            //changes the value of a specific index
+            change_item_get_index_input(&index, &new_val);
+            set_value_at_index(stack, index, new_val);
 
         } else if (user_input == 9) {
             running = false;
