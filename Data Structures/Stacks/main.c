@@ -34,7 +34,7 @@ int main() {
         } else if (user_input == 3) {
             //gets the value of a specific index
             get_index_input(&index);
-            get_index(stack, index);
+            printf("Value: %d", get_index(stack, index));
 
         } else if (user_input == 4) {
             int i;

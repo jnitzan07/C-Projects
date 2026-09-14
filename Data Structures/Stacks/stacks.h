@@ -40,8 +40,9 @@ void do_10X(int* value_addr) { int value = *value_addr; *value_addr = value * 10
 
 void push_node(Node **head, int new_val);
 void pop_node(Node **head);
-void get_index(Node *head, int index);
+int get_index(Node *head, int index);
 void print_stack(Node *head);
 void swap_nodes(Node **head, int i, int j);
+void set_value_at_index(Node *head, int index, int value);
 
 #endif //EE200_STACKS_H
