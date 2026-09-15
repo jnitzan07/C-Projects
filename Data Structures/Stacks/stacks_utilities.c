@@ -2,10 +2,10 @@
 
 #include "stacks_utilities.h"
 
-int get_new_value() {
-    int ret_val;
-    printf("%s", "\nEnter the value of the item (int) to add: ");
-    scanf("%d", &ret_val);
+double get_new_value() {
+    double ret_val;
+    printf("%s", "\nEnter the value of the item to add: ");
+    scanf("%lf", &ret_val);
     return ret_val;
 }
 
@@ -23,11 +23,11 @@ int view_item_get_index_input() {
     return ret_val;
 }
 
-void change_item_get_index_input(int* index, int* new_value) {
+void change_item_get_index_input(int* index, double* new_value) {
     printf("%s", "\nEnter the index of the item to change (0 is the head item): ");
     scanf("%d", index);
     printf("%s", "\nEnter the new value of the item (0 is the head item): ");
-    scanf("%d", new_value);
+    scanf("%lf", new_value);
 }
 
 void get_indexes_to_swap(int* i, int* j) {

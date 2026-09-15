@@ -11,7 +11,7 @@ int main() {
 
     int user_input;
     int index;
-    int new_val;
+    double new_val;
 
     bool running = true;
 
