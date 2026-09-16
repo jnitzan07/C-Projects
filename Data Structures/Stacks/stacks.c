@@ -40,6 +40,7 @@ int get_index(Node *head, int index) {
     }
 
     if  (pointer != NULL) {
+        // this is a cast down from double to int... should at least give a compile warning if not an error
         return pointer -> value;
     }
 
