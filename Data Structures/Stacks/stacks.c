@@ -27,8 +27,7 @@ void pop_node(Node **head) {
     free(pointer);
 }
 
-int get_index(Node *head, int index) {
-    //prints the value at a certain index
+Node* get_index(Node *head, int index) {
     Node *pointer = head;
 
     // stylistically this isn't the nicest way imo. I would do a for(pointer=head; index>0; index--) { if (pointer == NULL) break; } and then return pointer
@@ -40,12 +39,12 @@ int get_index(Node *head, int index) {
     }
 
     if  (pointer != NULL) {
-        // this is a cast down from double to int... should at least give a compile warning if not an error
-        return pointer -> value;
+        //this is a cast down from double to int... should at least give a compile warning if not an error
+        return pointer;
     }
 
     printf("\nIndex is greater then stack length!");
-    return -0;
+    return pointer;
 }
 
 
@@ -84,25 +83,38 @@ void set_value_at_index(Node *head, int index, double new_value) {
 //as for the swapping the pointers, working on it, more difficult then i expected.
 
 void swap_nodes(Node **head, int i, int j) {
-    Node *pointer = *head;
-    Node *temp_pointer = *head;
+    Node *pointer_i;
+    Node *pointer_j;
 
-    for (int count = i; count > 1; count--) {
-        pointer = pointer -> next;
+    if (i != 0) {
+        pointer_i = get_index(*head, i - 1);
+    } else {
+        pointer_i = get_index(*head, i);
     }
 
-    j -= i;
-
-    temp_pointer = pointer;
-
-    for (int count = j; j > 1; j--) {
-        temp_pointer = temp_pointer -> next;
+    if (j != 0) {
+        pointer_j = get_index(*head, j - 1);
+    } else {
+        pointer_j = *head;
     }
 
-    Node *temp = pointer -> next;
 
-    pointer -> next = temp_pointer -> next;
-    temp_pointer -> next = temp;
+    //this is written out overly complex (there's 100% a easier way to do this I was too lazy to implement)
+    //but basically we're changing the pointers of the nodes prior to the node at index i and j to be each other
+    //then incrementing those by one (so our prior node for i's next would now go to node j).
+    //then we swap the next for nodes i and j
+    //this doesn't work if one of the indexes is 0, working on fixing that
+
+    Node *temp = pointer_j -> next;
+    pointer_j -> next = pointer_i -> next;
+    pointer_i -> next = temp;
+
+    pointer_i = pointer_i -> next;
+    pointer_j = pointer_j -> next;
+
+    temp = pointer_j -> next;
+    pointer_j -> next = pointer_i -> next;
+    pointer_i -> next = temp;
 }
 
 

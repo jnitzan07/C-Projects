@@ -10,7 +10,7 @@ typedef struct Node {
 
 void push_node(Node **head, double new_val);
 void pop_node(Node **head);
-int get_index(Node *head, int index);
+Node* get_index(Node *head, int index);
 void print_stack(Node *head);
 void swap_nodes(Node **head, int i, int j);
 void set_value_at_index(Node *head, int index, double value);

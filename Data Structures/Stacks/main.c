@@ -38,7 +38,8 @@ int main() {
                 break;
             case 3:
                 //gets the value of a specific index
-                printf("Value: %d", get_index(stack, view_item_get_index_input()));
+                Node* pointer = get_index(stack, view_item_get_index_input());
+                printf("Value: %lf", pointer -> value);
                 break;
             case 4:
                 int i;
