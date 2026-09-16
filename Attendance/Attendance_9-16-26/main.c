@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 void print_grade_switch(int grade) {
     printf("Grade determined from switch: ");
     switch (grade/10) {

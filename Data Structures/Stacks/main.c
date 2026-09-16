@@ -55,6 +55,8 @@ int main() {
             case 9:
                 running = false;
                 break;
+            default:
+                break;
         }
 
     }
