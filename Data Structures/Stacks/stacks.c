@@ -22,7 +22,7 @@ void pop_node(Node **head) {
         return;
     }
 
-    struct Node *pointer = *head;
+    Node *pointer = *head;
     *head = pointer -> next;
     free(pointer);
 }
@@ -80,25 +80,28 @@ void set_value_at_index(Node *head, int index, double new_value) {
  * It'd just take like 20 minutes of work tho :<, and I'm lazzzzzy! ;)
 */
 
-//as for the swapping the pointers, done :)
+//as for the swapping the pointers, working on it, more difficult then i expected.
 
 void swap_nodes(Node **head, int i, int j) {
     Node *pointer = *head;
-    Node **temp_pointer = head;
+    Node *temp_pointer = *head;
 
-    for (pointer = *head; i > 1; i--) {
+    for (int count = i; count > 1; count--) {
         pointer = pointer -> next;
     }
 
     j -= i;
 
-    for (*temp_pointer = pointer; j > 1; j--) {
-        *temp_pointer = pointer -> next;
+    temp_pointer = pointer;
+
+    for (int count = j; j > 1; j--) {
+        temp_pointer = temp_pointer -> next;
     }
 
-    Node *temp = pointer;
-    pointer = *temp_pointer;
-    *temp_pointer = temp;
+    Node *temp = pointer -> next;
+
+    pointer -> next = temp_pointer -> next;
+    temp_pointer -> next = temp;
 }
 
 
