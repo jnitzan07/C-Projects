@@ -8,54 +8,53 @@
 
 int main() {
     Node *stack = NULL;
-
-    int user_input;
-    int index;
-    double new_val;
-
     bool running = true;
 
-    //quick question. i've been using scanf instead of scanf_s, which can give issues with buffer overflows. However, our stack is only scanning integers, meaning it should be fineeee?
-
-
-
     while (running) {
-        user_input = get_next_action();
+        int user_input = get_next_action();
+        int index;
+        double new_val;
+
+        Node* pointer = NULL;
 
         switch (user_input) {
-            case 0:
-                //adds a new head node
-                new_val = get_new_value();
-                push_node(&stack, new_val);
+            pointer = NULL;
+            case 0: //adds a new node at the head of the stack
+                push_node(&stack, get_new_value());
                 break;
-            case 1:
-                //deletes the head value
+            case 1: //inserts a new node at a specified index
+                index = get_index_input();
+                new_val = get_new_value();
+                insert_node(&stack, index, new_val);
+                break;
+            case 2: //deletes the node at a specified index
+                index = get_index_input();
+                remove_node(&stack, index);
+                break;
+            case 3: //deletes the head node
                 pop_node(&stack);
                 break;
-            case 2:
-                //prints all the vals
+            case 4: //prints all nodes in stack
                 print_stack(stack);
                 break;
-            case 3:
-                //gets the value of a specific index
-                Node* pointer = get_index(stack, view_item_get_index_input());
+            case 5: //gets the value of the node at a index
+                index = get_index_input();
+                get_index(stack, index, pointer);
                 printf("Value: %lf", pointer -> value);
                 break;
-            case 4:
-                int i;
-                int j;
+            case 6: //swaps 2 nodes (via pointer swapping)
+                int i, j;
                 get_indexes_to_swap(&i, &j);
                 swap_nodes(&stack, i, j);
                 break;
-            case 5:
-                //changes the value of a specific index
+            case 7: //changes the value of a specific index
                 change_item_get_index_input(&index, &new_val);
                 set_value_at_index(stack, index, new_val);
                 break;
-            case 9:
+            case 9: //exit condition
                 running = false;
                 break;
-            default:
+            default: //for invalid inputs
                 break;
         }
 

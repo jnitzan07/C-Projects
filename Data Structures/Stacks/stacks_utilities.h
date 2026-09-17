@@ -5,7 +5,7 @@ double get_new_value();
 
 int get_next_action();
 
-int view_item_get_index_input();
+int get_index_input();
 
 void get_indexes_to_swap(int* i, int* j);
 

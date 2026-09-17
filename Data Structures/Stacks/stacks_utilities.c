@@ -11,14 +11,14 @@ double get_new_value() {
 
 int get_next_action() {
     int ret_val;
-    printf("%s", "\nWould you like to: \nAdd an item (0), \nRemove the head item (1), \nPrint all items (2), \nView a specific index (3), \nSwap 2 items (4), \nChange a item (5), \nExit (9)\nAction: ");
+    printf("%s", "\nWould you like to: \nAdd an item (0), \nInsert an item (1), \nRemove a specific item (2), \nRemove the head item (3), \nPrint all items (4), \nView a specific index (5), \nSwap 2 items (6), \nChange a item (7), \nExit (9)\nAction: ");
     scanf("%d", &ret_val);
     return ret_val;
 }
 
-int view_item_get_index_input() {
+int get_index_input() {
     int ret_val;
-    printf("%s", "\nEnter the index of the item to view (0 is the head item): ");
+    printf("%s", "\nEnter the index (0 is the head item): ");
     scanf("%d", &ret_val);
     return ret_val;
 }

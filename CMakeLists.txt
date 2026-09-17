@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.26)
 project(EE200 C)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 23)
 
 # Attendance
 add_executable(Attendance_9-2-26 "Attendance/Attendance_9-2-26/main.c")

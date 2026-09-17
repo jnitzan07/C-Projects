@@ -3,56 +3,120 @@
 
 #include "stacks.h"
 
-Node* get_index(Node *head, int index) {
+int get_index(Node *head, int index, Node* node_at_index) {
     Node *pointer = head;
 
     for (pointer = head; index > 0; index--) {
         pointer = pointer -> next;
         if (pointer == NULL) {
-            break;
+            printf("\nIndex is greater then stack length!");
+            return 0;
         }
     }
 
-    if  (pointer == NULL) {
-        printf("\nIndex is greater then stack length!");
-    }
-    return pointer;
+    node_at_index = pointer;
+    return 1;
 }
 
-void push_node(Node **head, double new_val) {
-    //adds a value (new head)
+int push_node(Node **head, double new_val) {
     Node *new_node = (Node *)malloc(sizeof(Node));
-    new_node->value = new_val;
-    new_node->next = *head;
+    new_node -> value = new_val;
+    new_node -> next = *head;
     *head = new_node;
+    return 1;
 }
 
-void pop_node(Node **head) {
-    if (head == NULL) {
-        printf("\nStack is empty!");
-        return;
+int insert_node(Node **head, int index, double new_val) {
+    Node *pointer;
+    int valid_index;
+
+    if (index == 0) {
+        pointer = *head;
+        valid_index = 1;
+    } else {
+        valid_index = get_index(*head, index - 1, pointer);
+    }
+
+    if (!valid_index) {
+        return 0;
+    }
+
+    Node *new_node = (Node *)malloc(sizeof(Node));
+    new_node -> value = new_val;
+    new_node -> next = (index == 0) ? *head: pointer -> next;
+
+    if (index == 0) {
+        *head = new_node;
+    } else {
+        pointer -> next = new_node;
+    }
+
+    return 1;
+}
+
+int pop_node(Node **head) {
+    if (*head == NULL) {
+        return 0;
     }
 
     Node *pointer = *head;
     *head = pointer -> next;
     free(pointer);
+    return 1;
 }
 
-void set_value_at_index(Node *head, int index, double new_value) {
+int remove_node(Node **head, int index) {
+    Node* pointer;
+    int valid_index;
+
+    if (index == 0) {
+        pointer = *head;
+        valid_index = 1;
+    } else {
+        valid_index = get_index(*head, index - 1, pointer);
+    }
+
+    if (!valid_index) {
+        return 0;
+    }
+
+    Node *temp = pointer -> next;
+
+    pointer -> next = temp -> next;
+    free(temp);
+    return 1;
+}
+
+int set_value_at_index(Node *head, int index, double new_value) {
     Node *pointer = head;
-    get_index(head, index) -> value = new_value;
+    int valid_index = get_index(head, index, pointer);
+
+    if (!valid_index) {
+        return 0;
+    }
+
+    pointer -> value = new_value;
+    return 1;
 }
 
-void swap_nodes(Node **head, int i, int j) {
+int swap_nodes(Node **head, int i, int j) {
 
-    if (i == j) {
-        return;
+    if ((i == j || j == 0) && (i > 0 && j > 0)) {
+        return 0;
     }
 
     //5 pointers, 2 nodes before i and j, nodes i and j, and the node after j
     //if i is 0 then pointer_i is the head of the stack
-    Node *pointer_i = i > 0 ? get_index(*head, i - 1): *head;
-    Node *pointer_j = get_index(*head, j - 1);
+
+    Node *pointer_i = NULL;
+    Node *pointer_j = NULL;
+
+    if (i == 0) {
+        pointer_i = *head;
+    } else {
+        get_index(*head, i - 1, pointer_i);
+    }
+    get_index(*head, j - 1, pointer_j);
 
     //if i is 0 then the node i is the head of the stack
     Node *node_i = i > 0 ? pointer_i -> next: *head;
@@ -60,7 +124,7 @@ void swap_nodes(Node **head, int i, int j) {
 
     Node *after_j = node_j -> next;
 
-    if (i > 0) {
+    if (i != 0) {
         pointer_i -> next = node_j;
     } else {
         *head = node_j;
@@ -70,12 +134,13 @@ void swap_nodes(Node **head, int i, int j) {
     node_j -> next = node_i -> next;
     node_i -> next = after_j;
 
+    return 1;
 }
 
-void print_stack(Node *head) {
+int print_stack(Node *head) {
     if (head == NULL) {
         printf("\nStack is empty!");
-        return;
+        return 0;
     }
 
     Node *pointer = head;
@@ -88,35 +153,9 @@ void print_stack(Node *head) {
         printf(" <- %lf", pointer -> value);
         pointer = pointer -> next;
     }
+
+    return 1;
 }
-
-
-
-/*
-    The confusing bit is that the unary * and & operators mean different things in the declaration part of a function (or variable)
-    vs the code that uses them. In the declaration part of code, * means "pointer", and & means "reference" (I haven't taught you about that yet).
-    And because the compiler doesn't care about whitespace, I like to write it out this way:
-
-    int get_index(Node* head) { return 0; } // declares get_index that takes a "pointer to Node" as a parameter (called head)
-    int add_node(Node** head, int value) {...} declares add_node that takes a "pointer to a pointer to Node", so you can change what
-        that pointer points to. Why? Because when you add something to the head, the value of the memory address stored in your "head"
-        variable needs to change.
-
-    When you're in the statement (not declaration) part of code, * means "value stored at this memory address", and & means "memory address of this variable".
-    So e.g. I have int get_int_from_user() { int my_int; int* my_int_ptr = &my_int; scanf("%d", my_int_ptr); return my_int (or *my_int_ptr); }
-
-    This is confusing to EVERYONE when they first learn it. The way to fix it is to learn to verbalize the words when you read it.
-    int get_int_from_user() {
-        int my_int; // integer variable
-        int* my_int_ptr = &my_int; // integer pointer my_int_ptr contains the address of the my_int integer
-        scanf("%d", my_int_ptr); // read user input into the integer pointer, i.e. into the my_int integer
-        return my_int;
-        ....or
-        return *my_int_ptr; // return the value stored in the address my_int_ptr (which is the value of my_int)
-    }
-
-    Hopefully this makes sense. Learn to read code with these words accurately stated, and you will never go wrong.
-*/
 
 
 
