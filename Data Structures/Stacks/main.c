@@ -7,7 +7,7 @@
 
 
 int main() {
-    Node *stack = NULL;
+    Node *stack = nullptr;
     bool running = true;
 
     while (running) {
@@ -15,10 +15,10 @@ int main() {
         int index;
         double new_val;
 
-        Node* pointer = NULL;
+        Node* pointer = nullptr;
 
         switch (user_input) {
-            pointer = NULL;
+            pointer = nullptr;
             case 0: //adds a new node at the head of the stack
                 push_node(&stack, get_new_value());
                 break;

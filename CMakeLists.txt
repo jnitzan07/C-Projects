@@ -27,6 +27,7 @@ add_executable(random_number_generation
 # Homework
 add_executable(Homework_1-9-10-26 Homework/Homework_1_9-10-26/main.c)
 add_executable(Homework_2-9-20-26 Homework/Homework_2_9-20-26/main.c)
+add_executable(Homework_3-9-27-26 Homework/Homework_3_9-27-26/main.c)
 
 # Misc
 add_executable(tic-tac-toe Misc/Tic-Tac-Toe/main.c)
