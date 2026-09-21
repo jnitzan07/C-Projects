@@ -151,8 +151,7 @@ static int biggest_user_input(int *user_input) {
 int main() {
     //could use const or constexpr here but there's no real point as this isn't some project where we need to make sure it's never changed
     int user_input[99] = {
-        1, 2, 3, 4, 6, 5, -1,
-        8 //-1 breaks it off early, the 8 is just there to make sure 8 isn't checked by the function (so it all works correctly)
+        1, 2, 3, 4, 6, 5, -1, 8 //-1 breaks it off early, the 8 is just there to make sure 8 isn't checked by the function (so it all works correctly)
     };
 
     calculator();
