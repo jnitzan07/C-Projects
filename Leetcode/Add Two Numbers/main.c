@@ -10,15 +10,26 @@ struct ListNode {
     struct ListNode *next;
 };
 
+
+
+void sum_digits(int l1_digits[101], int l2_digits[101], int sum_digits[101]) {
+    for (int i = 0; i < 101; i++) {
+        sum_digits[100 - i] += l1_digits[100 - i] + l2_digits[100 - i];
+        if (sum_digits[100 - i] >= 10 && i != 100) {
+            sum_digits[100 - i] %= 10;
+            sum_digits[100 - i - 1] += 1;
+        }
+    }
+}
+
 struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
-    struct ListNode* l3;
 
     //constraints is max 100 nodes
     int l1_digits[101] = {0};
     int l1_count = 1;
     while (l1 != NULL) {
         l1_digits[101 - l1_count] = l1 -> val;
-        l1 = l1->next;
+        l1 = l1 -> next;
         l1_count++;
     }
 
@@ -31,26 +42,21 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
     }
 
     //printf testing confirms getting l1 and l2 as arrays of digits works at least
-    int sum_digits[101] = {0};
-
     int sum_count = (l1_count >= l2_count ? l1_count: l2_count);
+    int sum[101] = {0};
+    sum_digits(l1_digits, l2_digits, sum);
 
-    for (int i = 100; i >= 0; i--) {
-        sum_digits[i] += l1_digits[i] + l2_digits[i];
-        if (sum_digits[i] >= 10 && i != 0) {
-            sum_digits[i] %= 10;
-            sum_digits[i - 1] += 1;
-        }
-    }
+    int count = 0;
 
-    for (int j = 100 - sum_count; j <= 100; j++) {
+
+    struct ListNode *l3 = NULL;
+
+    for (int j = 100 - sum_count + 2; j < 101; j++) {
         struct ListNode *new_node = (struct ListNode*) malloc(sizeof(struct ListNode));
-        new_node -> val = sum_digits[j];
+        new_node -> val = sum[j];
         new_node -> next = l3;
         l3 = new_node;
     }
-
-    printf("%d", sum_count);
 
     return (l3);
 }

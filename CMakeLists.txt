@@ -10,6 +10,7 @@ add_executable(Attendance_9-11-26 "Attendance/Attendance_9-11-26/main.c"
         Homework/Homework_2_9-20-26/main.c
         Attendance/Attendance_9-16-26/main.c)
 add_executable(Attendance_9-21-26 "Attendance/Attendance_9-21-26/main.c")
+add_executable(Attendance_9-23-26 "Attendance/Attendance_9-23-26/main.c")
 
 # Data Structures
 add_executable(stacks_main "Data Structures/Stacks/main.c"
