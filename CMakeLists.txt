@@ -6,11 +6,10 @@ set(CMAKE_C_STANDARD 23)
 # Attendance
 add_executable(Attendance_9-2-26 "Attendance/Attendance_9-2-26/main.c")
 add_executable(Attendance_9-16-26 "Attendance/Attendance_9-16-26/main.c")
-add_executable(Attendance_9-11-26 "Attendance/Attendance_9-11-26/main.c"
-        Homework/Homework_2_9-20-26/main.c
-        Attendance/Attendance_9-16-26/main.c)
+add_executable(Attendance_9-11-26 "Attendance/Attendance_9-11-26/main.c")
 add_executable(Attendance_9-21-26 "Attendance/Attendance_9-21-26/main.c")
 add_executable(Attendance_9-23-26 "Attendance/Attendance_9-23-26/main.c")
+add_executable(Attendance_-25-26 "Attendance/Attendance_9-25-26/main.c")
 
 # Data Structures
 add_executable(stacks_main "Data Structures/Stacks/main.c"
@@ -30,6 +29,10 @@ add_executable(random_number_generation
 add_executable(Homework_1-9-10-26 Homework/Homework_1_9-10-26/main.c)
 add_executable(Homework_2-9-20-26 Homework/Homework_2_9-20-26/main.c)
 add_executable(Homework_3-9-27-26 Homework/Homework_3_9-27-26/main.c)
+
+#Leetcode
+add_executable(Longest-Substring "Leetcode/Longest Substring Without Repeating Characters/main.c")
+
 
 # Misc
 add_executable(tic-tac-toe Misc/Tic-Tac-Toe/main.c)
