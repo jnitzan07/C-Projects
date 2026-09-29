@@ -3,40 +3,14 @@
 
 #include "stacks.h"
 
-int get_index(Node *head, int index, Node* node_at_index) {
-    // nah fam this is messy. you're taking a Node* parameter (node_at_index), and you want to **return** the node at index.
-    // so let me translate to you what you're doing
-    // in: integer, representing address of a node
-    // set: integer = new value <-- but this doesn't change the value that the caller has.
-    // in other words, if I am a caller:
-    // Node* head;
-    // push_node(head, my_node)
-    // Node* index_0 = 0
-    // get_index(head, 0, index_0)
-    // what happens is inside get_index I get 0 passed in, set it to some memory address, but it doesn't change the value at my calling function.
-    // this is just like if I have:
-    // void make_sum(int a, int b, int sum) { sum = a + b; }
-    // setting the sum INSIDE the function does nothing when I call it from the outside
-    // int sum = 0; make_sum(7, 8, sum); print(sum); // sum is still 0!
-    // when you want to set the value of a Node* inside your function, you need to pass in a Node**. See below, what you did with "head" in push_node.
-
-    // but besides all that, you could just have:
-    // Node* get_index(Node* head, int index) {
-    //   for (; head != null && index > 0; --index) { head = head->next; } // this doesn't change "head" outside of this function! same as the int in make_sum
-    //   return head; // this will just return null if the index is too big
-    // }
-    Node *pointer = head;
-
-    for (pointer = head; index > 0; index--) {
-        pointer = pointer -> next;
-        if (pointer == NULL) {
-            printf("\nIndex is greater then stack length!");
-            return 0;
-        }
+Node* get_index(Node *head, int index) {
+    //used a while loop instead bc i don't like how (; condition; increment) looks lol
+    while (head != NULL && index > 0)  {
+        index--;
+        head = head -> next;
     }
 
-    node_at_index = pointer;
-    return 1;
+    return head;
 }
 
 int push_node(Node **head, double new_val) {
@@ -55,7 +29,7 @@ int insert_node(Node **head, int index, double new_val) {
         pointer = *head;
         valid_index = 1;
     } else {
-        valid_index = get_index(*head, index - 1, pointer);
+        valid_index = (get_index(*head, index - 1) != NULL);
     }
 
     if (!valid_index) {
@@ -94,7 +68,7 @@ int remove_node(Node **head, int index) {
         pointer = *head;
         valid_index = 1;
     } else {
-        valid_index = get_index(*head, index - 1, pointer);
+        valid_index = (get_index(*head, index - 1) != NULL);
     }
 
     if (!valid_index) {
@@ -110,7 +84,7 @@ int remove_node(Node **head, int index) {
 
 int set_value_at_index(Node *head, int index, double new_value) {
     Node *pointer = head;
-    int valid_index = get_index(head, index, pointer);
+    int valid_index = (get_index(head, index) != NULL);
 
     if (!valid_index) {
         return 0;
@@ -135,9 +109,9 @@ int swap_nodes(Node **head, int i, int j) {
     if (i == 0) {
         pointer_i = *head;
     } else {
-        get_index(*head, i - 1, pointer_i);
+        pointer_i = get_index(*head, i - 1);
     }
-    get_index(*head, j - 1, pointer_j);
+    pointer_j = get_index(*head, j - 1);
 
     //if i is 0 then the node i is the head of the stack
     Node *node_i = i > 0 ? pointer_i -> next: *head;

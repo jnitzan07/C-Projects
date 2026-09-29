@@ -39,8 +39,12 @@ int main() {
                 break;
             case 5: //gets the value of the node at a index
                 index = get_index_input();
-                get_index(stack, index, pointer);
-                printf("Value: %lf", pointer -> value);
+                pointer = get_index(stack, index);
+                if (pointer == NULL) {
+                    printf("\nIndex is greater then stack length!");
+                } else {
+                    printf("Value: %lf", pointer -> value);
+                }
                 break;
             case 6: //swaps 2 nodes (via pointer swapping)
                 int i, j;
