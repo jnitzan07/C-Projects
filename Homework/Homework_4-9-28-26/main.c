@@ -1,25 +1,34 @@
 #include <stdio.h>
 #include <limits.h>
-
+#include <math.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
 double calc_sqrt(double num, bool do_print) {
     //newton's method
+
+    if (num <= 0) {return 0;}
+
     double x0 = 1.0;
-    double tolerance = 1e-20;
+    double tolerance = 1e-14;
 
     int iterations = 0;
     int max_iterations = 1000;
-    while (iterations - max_iterations) {
+    while (iterations < max_iterations) {
         double xn = 0.5 * (x0 + num / x0);
 
-        int sign = (xn - x0 < 0) ? -1: 1;
-        if (sign * (xn - x0) < tolerance) {
+        double diff = (xn - x0);
+        if (diff < 0) {diff = -diff;}
+
+        if (diff < tolerance * xn) {
             if (do_print) printf("\nThe square root of %lf is approximately %lf.", num, xn);
             return xn;
         }
         x0 = xn;
         iterations++;
     }
+
+    return 0;
 }
 
 int print_fibonacci(int amount) {
@@ -28,9 +37,8 @@ int print_fibonacci(int amount) {
 
     int temp;
 
-    printf("- ");
     for (int i = 0; i < amount; i++) {
-        printf("%d - ", current_int);
+        printf("%d   ", current_int);
         temp = last_int;
         last_int = current_int;
         current_int += temp;
@@ -39,24 +47,25 @@ int print_fibonacci(int amount) {
     return 1;
 }
 
-int calc_parts(int num, int* parts) {
+int calc_divisors(int num, int* divisors) {
     int count = 0;
 
     for (int i = 1; i <= num/2; i++) {
         if (num % i == 0) {
-            parts[count++] = i;
+            divisors[count++] = i;
         }
     }
-    parts[count] = -1;
+
+    divisors[count] = -1;
 
     return 1;
 }
 
-int calc_sum(int* parts) {
+int calc_sum(int* divisors) {
     int sum = 0;
     int count = 0;
-    while (parts[count] != -1) {
-        sum += parts[count];
+    while (divisors[count] != -1) {
+        sum += divisors[count];
         count++;
     }
 
@@ -64,14 +73,20 @@ int calc_sum(int* parts) {
 }
 
 int perfect_number(int bounds) {
+    int *divisors = malloc(1600 * sizeof(int));
+    if (divisors == NULL) {
+        printf("\n###Out of Memory###");
+        return 0;
+    }
+
     for (int i = 2; i <= bounds; i++) {
-        int parts[99] = {0};
-        calc_parts(i, parts);
-        int sum = calc_sum(parts);
+        calc_divisors(i, divisors);
+        int sum = calc_sum(divisors);
 
         if (sum == i) printf("\n%d is a perfect number!", i);
     }
 
+    free(divisors);
     return 1;
 }
 
@@ -81,7 +96,7 @@ int max_min(int num_amount) {
     int temp;
 
     for (int i = 0; i < num_amount; i++) {
-        printf("\nEnter number %d: ", i + 1);
+        printf("Enter number %d: ", i + 1);
 
         scanf("%d", &temp);
 
@@ -89,22 +104,28 @@ int max_min(int num_amount) {
         if (temp > max) max = temp;
     }
 
-    printf("\nMin: %d, Max: %d", min, max);
+    printf("Min: %d, Max: %d", min, max);
     return 1;
 }
 
 int calc_primes(int bounds) {
+    if (bounds < 2) {bounds = 2;}
+    int size = (int) (1.26 * bounds/log(bounds)) + 1;
+    int *primes = malloc(size *sizeof(int));
+    if (primes == NULL) {
+        printf("\n###Out of Memory###");
+        return -1;
+    }
 
-    int primes[99] = {INT_MAX};
     int prime_count = 0;
     primes[prime_count++] = 2;
 
-    for (int i = 3; i <= bounds; i++) {
+    for (int i = 3; i <= bounds; i += 2) {
         int count = 0;
 
         bool is_prime = true;
-        while (is_prime && primes[count] <= calc_sqrt(i, false) && primes[count] != 0) {
-            if (i % primes[count] == 0) is_prime = false;
+        while (is_prime && count < prime_count && primes[count] * primes[count] <= i) {
+            if (i % primes[count] == 0) {is_prime = false;}
             count++;
         }
 
@@ -117,23 +138,34 @@ int calc_primes(int bounds) {
         printf("\n%d is a prime number!", primes[i]);
     }
 
+    free(primes);
     return 1;
 }
 
-int main() {
+int main(void) {
     //P1
+    printf("Printing the fibonacci sequence (16 dig):");
     print_fibonacci(16);
     printf("\n");
 
     //P2
-    max_min(4);
+    int inputted_numbers_amount = 4;
+    printf("Find the max and minimum of %d inputted numbers:", inputted_numbers_amount);
+    printf("\n");
+    max_min(inputted_numbers_amount);
 
     //P3
-    perfect_number(8128);
+    int perfect_bounds = 20000;
+    printf("\n\nFinding all perfect numbers <= %d: ", perfect_bounds);
+    perfect_number(perfect_bounds);
 
     //P4
-    calc_primes(19);
+    int prime_bounds = 25;
+    printf("\n\nFinding all prime numbers <= %d: ", prime_bounds);
+    calc_primes(prime_bounds);
 
     //P5
-    calc_sqrt(5.000, true);
+    double sqrt_double = 5.532;
+    printf("\n\nFinding the sqrt of a double (%lf): ", sqrt_double);
+    calc_sqrt(sqrt_double, true);
 }
