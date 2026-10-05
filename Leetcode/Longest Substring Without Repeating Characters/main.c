@@ -5,14 +5,13 @@
 #include <string.h>
 
 
-
 static int char_array_contains(char* array, char target, int endpoint) {
     for (int i = 0; i < endpoint; i++) {
         if (target == array[i]) {
-            return 1;
+            return i;
         }
     }
-    return 0;
+    return -1;
 }
 
 static int lengthOfLongestSubstring(char* s) {
@@ -23,25 +22,36 @@ static int lengthOfLongestSubstring(char* s) {
     int str_len = strlen(s);
 
 
-    char *seen_chars = malloc(sizeof(s));
+    char *seen_chars = malloc(str_len + 1);
+    int total_check = 0;
 
-    while (count < str_len - longest) {
-        if (char_array_contains(seen_chars, s[count], length)) {
+    while (count < str_len) {
+        int check = char_array_contains(seen_chars, s[count], length);
+        if (check != -1) {
+            longest = (length > longest) ? length: longest;
             length = 0;
+            total_check += check + 1;
+            count = total_check;
         } else {
             seen_chars[length] = s[count];
             length++;
-            longest = (length > longest) ? length: longest;
+            count++;
         }
-        count++;
     }
 
+    longest = (length > longest) ? length: longest;
     free(seen_chars);
     return longest;
 }
 
 
-int main() {
 
+int main() {
+    char* tests[] = {"sVRDmevU5"};
+    int tests_length = sizeof(tests) / sizeof(tests[0]);
+
+    for (int i = 0; i < tests_length; i++) {
+        printf("\n%s, %d", tests[i], lengthOfLongestSubstring(tests[i]));
+    }
     return 1;
 }

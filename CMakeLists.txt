@@ -36,7 +36,9 @@ add_executable(Homework-4-9-28-26 "Homework/Homework_4-9-28-26/main.c")
 add_executable(Homework-5-10-5-26 "Homework/Homework_5-10-5-26/main.c")
 
 #Leetcode
+add_executable(Add-2-Numbers "Leetcode/Add Two Numbers/main.c")
 add_executable(Longest-Substring "Leetcode/Longest Substring Without Repeating Characters/main.c")
+add_executable(2-Sum "Leetcode/2 Sum/main.c")
 
 
 # Misc
