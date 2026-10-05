@@ -33,6 +33,7 @@ add_executable(Homework_1-9-10-26 Homework/Homework_1_9-10-26/main.c)
 add_executable(Homework_2-9-20-26 Homework/Homework_2_9-20-26/main.c)
 add_executable(Homework_3-9-27-26 Homework/Homework_3_9-27-26/main.c)
 add_executable(Homework-4-9-28-26 "Homework/Homework_4-9-28-26/main.c")
+add_executable(Homework-5-10-5-26 "Homework/Homework_5-10-5-26/main.c")
 
 #Leetcode
 add_executable(Longest-Substring "Leetcode/Longest Substring Without Repeating Characters/main.c")
