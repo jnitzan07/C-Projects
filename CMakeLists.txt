@@ -39,6 +39,7 @@ add_executable(Homework-5-10-5-26 "Homework/Homework_5-10-5-26/main.c")
 add_executable(Add-2-Numbers "Leetcode/Add Two Numbers/main.c")
 add_executable(Longest-Substring "Leetcode/Longest Substring Without Repeating Characters/main.c")
 add_executable(2-Sum "Leetcode/2 Sum/main.c")
+add_executable(Median-of-Two-Sorted-Arrays "Leetcode/Median of Two Sorted Arrays/main.c")
 
 
 # Misc
