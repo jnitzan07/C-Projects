@@ -22,16 +22,19 @@ static int lengthOfLongestSubstring(char* s) {
     int str_len = strlen(s);
 
 
-    char *seen_chars = malloc(str_len + 1);
+    char *seen_chars = malloc(256);
     int total_check = 0;
 
     while (count < str_len) {
         int check = char_array_contains(seen_chars, s[count], length);
         if (check != -1) {
             longest = (length > longest) ? length: longest;
-            length = 0;
             total_check += check + 1;
+            length = 0;
             count = total_check;
+            if (str_len - total_check <= longest) {
+                break;
+            }
         } else {
             seen_chars[length] = s[count];
             length++;
