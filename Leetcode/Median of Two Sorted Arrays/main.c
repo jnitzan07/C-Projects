@@ -2,6 +2,8 @@
 #include <stdlib.h>
 
 double findMedianSortedArrays(int* n1, int s1, int* n2, int s2) {
+    //got it to O(m+n) complexity
+    //need to figure out binary trees to do O(log(n+m)) time complexity
     int size = s1 + s2;
     int *arr = malloc(size * sizeof(int));
     int count1 = 0, count2 = 0;
