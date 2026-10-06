@@ -1,24 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <stdlib.h>
+
 double findMedianSortedArrays(int* n1, int s1, int* n2, int s2) {
-    int size = s1 + s2;
-    int *arr = malloc(size * sizeof(int));
+    //time complexity should be O(log(m+n))
+    int max = ((s1 + s2) % 2 == 0) ? (s1 + s2) / 2 : (s1 + s2 + 1) / 2;
+    int *arr = malloc((max + 1) * sizeof(int));
     int count1 = 0, count2 = 0;
-    for (int i = 0; i < size; i++) {
+    int index = 0;
+    while ((count1 + count2) <= max) {
         if (count1 < s1 && count2 < s2) {
-            arr[i] = (n1[count1] <= n2[count2]) ? n1[count1++] : n2[count2++];
+            arr[index] = (n1[count1] <= n2[count2]) ? n1[count1++]: n2[count2++];
         } else {
-            arr[i] = (count1 < s1) ? n1[count1++] : n2[count2++];
+            if(count1 >= s1 && count2 >= s2) {break;}
+            arr[index] = (count1 < s1) ? n1[count1++]: n2[count2++];
         }
+        index++;
     }
 
     double result = 0;
-    if (size % 2 != 0) {
-        result = arr[size / 2];
+    if ((s1 + s2) % 2 != 0) {
+        result = arr[max - 1];
     } else {
-        int mid = size / 2;
-        result = (((double) arr[mid] + arr[mid - 1]) / 2);
+        result = (((double) arr[max] + arr[max - 1]) / 2);
     }
 
     free(arr);
