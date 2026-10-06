@@ -1,37 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <stdlib.h>
-
-#include <stdlib.h>
-
 double findMedianSortedArrays(int* n1, int s1, int* n2, int s2) {
-    //time complexity should be O(log(m+n))
-    int max = ((s1 + s2) % 2 == 0) ? (s1 + s2) / 2 : (s1 + s2 + 1) / 2;
-
-    int curr;
-    int prev;
-
+    int size = s1 + s2;
+    int *arr = malloc(size * sizeof(int));
     int count1 = 0, count2 = 0;
-    int index = 0;
-    while ((count1 + count2) <= max) {
-        prev = curr;
+    for (int i = 0; i < size; i++) {
         if (count1 < s1 && count2 < s2) {
-            curr = (n1[count1] <= n2[count2]) ? n1[count1++]: n2[count2++];
+            arr[i] = (n1[count1] <= n2[count2]) ? n1[count1++] : n2[count2++];
         } else {
-            if(count1 >= s1 && count2 >= s2) {break;}
-            curr = (count1 < s1) ? n1[count1++]: n2[count2++];
+            arr[i] = (count1 < s1) ? n1[count1++] : n2[count2++];
         }
-        index++;
     }
 
     double result = 0;
-    if ((s1 + s2) % 2 != 0) {
-        result = prev;
+    if (size % 2 != 0) {
+        result = arr[size / 2];
     } else {
-        result = (((double) curr + prev) / 2);
+        int mid = size / 2;
+        result = (((double) arr[mid] + arr[mid - 1]) / 2);
     }
 
+    free(arr);
     return result;
 }
 
@@ -42,7 +32,6 @@ int main() {
     int s2 = (sizeof(arr2) / sizeof(arr2[0]));
 
     double median = findMedianSortedArrays(arr1, s1, arr2, s2);
-
     printf("Median: %lf", median);
     return 1;
 }
