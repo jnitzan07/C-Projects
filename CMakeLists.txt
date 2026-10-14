@@ -34,12 +34,22 @@ add_executable(Homework_2-9-20-26 Homework/Homework_2_9-20-26/main.c)
 add_executable(Homework_3-9-27-26 Homework/Homework_3_9-27-26/main.c)
 add_executable(Homework-4-9-28-26 "Homework/Homework_4-9-28-26/main.c")
 add_executable(Homework-5-10-5-26 "Homework/Homework_5-10-5-26/main.c")
+add_executable(Homework-6-10-13-26 "Homework/Homework_6-10-13-26/main.c"
+        Homework/Homework_6-10-13-26/dice.c
+        Homework/Homework_6-10-13-26/dice.h
+        Homework/Homework_6-10-13-26/sic_bo.c
+        Homework/Homework_6-10-13-26/sic_bo.h
+        Homework/Homework_6-10-13-26/greatest_common_divisor.c
+        Homework/Homework_6-10-13-26/greatest_common_divisor.h
+        Homework/Homework_6-10-13-26/prediction.c
+        Homework/Homework_6-10-13-26/prediction.h)
 
 #Leetcode
 add_executable(Add-2-Numbers "Leetcode/Add Two Numbers/main.c")
 add_executable(Longest-Substring "Leetcode/Longest Substring Without Repeating Characters/main.c")
 add_executable(2-Sum "Leetcode/2 Sum/main.c")
 add_executable(Median-of-Two-Sorted-Arrays "Leetcode/Median of Two Sorted Arrays/main.c")
+add_executable(Longest-Palindromic-Substring "Leetcode/Longest Palindromic Substring/main.c")
 
 
 # Misc
