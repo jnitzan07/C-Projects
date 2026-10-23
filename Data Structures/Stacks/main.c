@@ -5,9 +5,20 @@
 #include "stacks.h"
 #include "stacks_utilities.h"
 
+int push_random_int_sorted(Node **stack, int max) {
+    Node *pointer = *stack;
+    int r1 = rand() % max;
+    int count = 0;
+    Node *item = get_index(pointer, count);
+    while (item != NULL && r1 >= item -> value) {
+        item = get_index(pointer, count);
+        count++;
+    }
+    insert_node(&pointer, count, r1);
+}
 
-int main() {
-    Node *stack = nullptr;
+int user_action_stack(Node *stack) {
+
     bool running = true;
 
     while (running) {
@@ -61,7 +72,18 @@ int main() {
             default: //for invalid inputs
                 break;
         }
-
     }
+
+    return 0;
+}
+
+int main() {
+    Node *stack = nullptr;
+    //user_action_stack(stack);
+    for (int i = 0; i < 100; i++) {
+        push_random_int_sorted(&stack, 1000);
+    }
+    print_stack(stack);
+
     return 0;
 }

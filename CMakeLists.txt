@@ -51,6 +51,9 @@ add_executable(2-Sum "Leetcode/2 Sum/main.c")
 add_executable(Median-of-Two-Sorted-Arrays "Leetcode/Median of Two Sorted Arrays/main.c")
 add_executable(Longest-Palindromic-Substring "Leetcode/Longest Palindromic Substring/main.c")
 
+#Projects
+add_executable(Project-1 "Projects/Project-1 EE200/main.c")
+
 
 # Misc
 add_executable(tic-tac-toe Misc/Tic-Tac-Toe/main.c)
