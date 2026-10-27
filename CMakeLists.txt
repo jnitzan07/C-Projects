@@ -44,6 +44,8 @@ add_executable(Homework-6-10-13-26 "Homework/Homework_6-10-13-26/main.c"
         Homework/Homework_6-10-13-26/prediction.c
         Homework/Homework_6-10-13-26/prediction.h)
 
+add_executable(Homework_7-10-26-26 Homework/Homework_7-10-26-26/main.c)
+
 #Leetcode
 add_executable(Add-2-Numbers "Leetcode/Add Two Numbers/main.c")
 add_executable(Longest-Substring "Leetcode/Longest Substring Without Repeating Characters/main.c")
@@ -52,8 +54,27 @@ add_executable(Median-of-Two-Sorted-Arrays "Leetcode/Median of Two Sorted Arrays
 add_executable(Longest-Palindromic-Substring "Leetcode/Longest Palindromic Substring/main.c")
 
 #Projects
-add_executable(Project-1 "Projects/Project-1 EE200/main.c")
+include(FetchContent)
+FetchContent_Declare(
+        raylib
+        URL https://github.com/raysan5/raylib/archive/refs/tags/5.5.tar.gz
+        EXCLUDE_FROM_ALL
+)
+FetchContent_MakeAvailable(raylib)
 
+add_executable(Project-1 "Projects/Project 1/main.c"
+        "Projects/Project 1/renderer.c"
+        "Projects/Project 1/renderer.h"
+        "Projects/Project 1/file_manager.c"
+        "Projects/Project 1/file_manager.h"
+        "Projects/Project 1/logger.c"
+        "Projects/Project 1/logger.h")
 
+target_link_libraries(Project-1 raylib)
+
+add_custom_command(TARGET Project-1 POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_SOURCE_DIR}/Projects/Project 1/assets"
+        "$<TARGET_FILE_DIR:Project-1>/assets")
 # Misc
 add_executable(tic-tac-toe Misc/Tic-Tac-Toe/main.c)
