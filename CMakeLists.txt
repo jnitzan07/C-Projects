@@ -20,6 +20,8 @@ add_executable(stacks_main "Data Structures/Stacks/main.c"
         "Data Structures/Stacks/stacks.c"
         "Data Structures/Stacks/stacks_utilities.c"
         "Data Structures/Stacks/stacks_utilities.h")
+add_executable(hashmaps_main "Data Structures/HashMaps/main.c")
+
 
 # Algorithms
 add_executable(random_number_generation

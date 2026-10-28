@@ -2,6 +2,7 @@
 #include <raylib.h>
 #include <stdlib.h>
 
+//arbitrary max object limit (per type) for the funsies. If I end up adding particles then I'll increase this to like 20k or something
 #define MAX_OBJ_PER_TYPE 1000
 
 struct ObjectList objects;
@@ -43,7 +44,8 @@ void free_textures() {
 }
 
 void load_images() {
-
+    //we might want to get rid of this and make our file manager load all the images in instead
+    //alternatively we could make this grab from the file manager.... lots of options
 }
 
 void add_rect(int x, int y, int width, int height, Color color) {
@@ -86,9 +88,11 @@ void render() {
     for (int i = 0; i < objects.circle_count; i++) {
         DrawCircle(objects.circles[i].cx, objects.circles[i].cy, objects.circles[i].radius, objects.circles[i].color);
     }
-    //rendering all images (loaded textures to be specific)
+    //rendering all images (or drawing loaded textures with parameters given to be specific)
     for (int i = 0; i < objects.image_count; i++) {
         struct RenderedImage *image = &objects.images[i];
-        DrawTextureEx(*image -> texture, (Vector2){image -> x, image -> y}, 0.0f, image -> scale, image -> tint);
+        //the "Ex" just means extended parameters for more control
+        //we also convert x/y to a vector (2D), because that's what it wants lmao
+        DrawTextureEx(*image -> texture, (Vector2) {image -> x, image -> y}, 0.0f, image -> scale, image -> tint);
     }
 }

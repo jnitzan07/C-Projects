@@ -3,9 +3,12 @@
 //basically the req for our void value a pointer to a malloc'd struct, which works well for our purposes.
 
 unsigned int hash(const char *key) {
+    //still don't quite get signed/unsigned long int??? long extends the max range and unsigned means only >0 vals?
+    //todo search up later me
     unsigned long int val = 5381;
     unsigned int i = 0;
     while (key[i] != '\0') {
+        //well known hash algorithm. I absolutely don't quite get the math behind it, but basically we're shifting val left by 5 then adding that num to val + ASCII value of the letter?
         val = ((val << 5) + val) + key[i];
         i++;
     }
