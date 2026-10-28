@@ -3,6 +3,7 @@
 
 #include "renderer.h"
 #include "file_manager.h"
+#include "hashmap.h"
 
 #define WINDOW_WIDTH 1240
 #define WINDOW_HEIGHT 780
