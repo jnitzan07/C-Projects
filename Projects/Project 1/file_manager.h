@@ -3,9 +3,9 @@
 #ifndef EE200_FILE_MANAGER_H
 #define EE200_FILE_MANAGER_H
 
-HashMap *loaded_files;
-char* *loaded_data_paths;
-int files_loaded = 0;
+extern HashMap *loaded_files;
+extern char **loaded_data_paths;
+extern int files_loaded;
 
 //will load all files, built for windows specifically (windows api)
 HashMap* init_files();

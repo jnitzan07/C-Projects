@@ -18,30 +18,29 @@ struct ObjectList {
 };
 
 //info and texture for images we can/are rendering
-struct RenderedImage {
+typedef struct RenderedImage {
     Texture2D *texture;
     Color tint;
     int x, y;
     double scale;
-};
+} RenderedImage;
 
-struct Rect {
+typedef struct Rect {
     int x, y;
     int width, height;
     Color color;
-};
+} Rect;
 
-struct Circle {
+typedef struct Circle {
     int cx, cy;
     float radius;
     Color color;
-};
+} Circle;
 
 Texture2D* add_texture(const char *path);
-void add_rect(int x, int y, int width, int height, Color color);
-void add_circle(int cx, int cy, double radius, Color color);
-
-void add_image(Texture2D *texture, int x, int y, double scale, Color tint);
+Rect* add_rect(int x, int y, int width, int height, Color color);
+Circle* add_circle(int cx, int cy, double radius, Color color);
+RenderedImage* add_image(Texture2D *texture, int x, int y, double scale, Color tint);
 
 void init_objects();
 void render();

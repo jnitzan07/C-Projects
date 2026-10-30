@@ -48,33 +48,34 @@ void load_images() {
     //alternatively we could make this grab from the file manager.... lots of options
 }
 
-void add_rect(int x, int y, int width, int height, Color color) {
-    struct Rect new_rect;
-    new_rect.x = x;
-    new_rect.y = y;
-    new_rect.width = width;
-    new_rect.height = height;
-    new_rect.color = color;
+Rect* add_rect(int x, int y, int width, int height, Color color) {
+    Rect *new_rect = &objects.rects[objects.rect_count];
+    new_rect -> x = x;
+    new_rect -> y = y;
+    new_rect -> width = width;
+    new_rect -> height = height;
+    new_rect -> color = color;
 
-    objects.rects[objects.rect_count] = new_rect;
     objects.rect_count++;
+    return (new_rect);
 }
 
-void add_circle(int cx, int cy, double radius, Color color) {
-    struct Circle new_circle;
-    new_circle.cx = cx;
-    new_circle.cy = cy;
-    new_circle.radius = radius;
-    new_circle.color = color;
+Circle* add_circle(int cx, int cy, double radius, Color color) {
+    Circle* new_circle = &objects.circles[objects.circle_count];
+    new_circle -> cx = cx;
+    new_circle -> cy = cy;
+    new_circle -> radius = radius;
+    new_circle -> color = color;
 
-    objects.circles[objects.circle_count] = new_circle;
     objects.circle_count++;
+    return (new_circle);
 }
 
-void add_image(Texture2D *texture, int x, int y, double scale, Color tint) {
-    struct RenderedImage image = {texture, tint, x, y, scale};
-    objects.images[objects.image_count] = image;
+RenderedImage* add_image(Texture2D *texture, int x, int y, double scale, Color tint) {
+    RenderedImage *image = &objects.images[objects.image_count];
+    *image = (RenderedImage) {texture, tint, x, y, scale};
     objects.image_count++;
+    return (image);
 }
 
 

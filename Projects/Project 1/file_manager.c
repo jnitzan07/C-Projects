@@ -5,6 +5,10 @@
 #include "file_manager.h"
 #include "hashmap.h"
 
+HashMap *loaded_files = NULL;
+char **loaded_data_paths = NULL;
+int files_loaded = 0;
+
 void load_file(char* path) {
     //add file to loaded file list
     //if image, call load_texture(file_path)
@@ -49,6 +53,7 @@ void create_file(char* path) {
 
 
 HashMap* init_files() {
+    files_loaded = 0;
     loaded_files = create_table();
     //malloc loaded_data (array of strings for files loaded)
 

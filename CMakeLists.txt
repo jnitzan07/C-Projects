@@ -72,7 +72,9 @@ add_executable(Project-1 "Projects/Project 1/main.c"
         "Projects/Project 1/logger.c"
         "Projects/Project 1/logger.h"
         "Projects/Project 1/hashmap.c"
-        "Projects/Project 1/hashmap.h")
+        "Projects/Project 1/hashmap.h"
+        "Projects/Project 1/physics_object.c"
+        "Projects/Project 1/physics_object.h")
 
 target_link_libraries(Project-1 raylib)
 
