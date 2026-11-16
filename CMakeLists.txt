@@ -45,8 +45,9 @@ add_executable(Homework-6-10-13-26 "Homework/Homework_6-10-13-26/main.c"
         Homework/Homework_6-10-13-26/greatest_common_divisor.h
         Homework/Homework_6-10-13-26/prediction.c
         Homework/Homework_6-10-13-26/prediction.h)
-
 add_executable(Homework_7-10-26-26 Homework/Homework_7-10-26-26/main.c)
+add_executable(Homework_8-11-4-26 Homework/Homework_8-11-4-26/main.c)
+add_executable(Homework_9-11-15-26 Homework/Homework_9-11-15-26/main.c)
 
 #Leetcode
 add_executable(Add-2-Numbers "Leetcode/Add Two Numbers/main.c")

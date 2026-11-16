@@ -1,5 +1,6 @@
 #ifndef EE200_PHYSICS_OBJECT_H
 #define EE200_PHYSICS_OBJECT_H
+#include "raylib.h"
 
 enum GRAPHICS_TYPE {
     RECT,    //0
@@ -12,6 +13,7 @@ typedef struct PhysicsObject {
     int type;
 
     bool is_collidable;
+    bool is_movable;
 
     double x, y;
     double vx, vy;
@@ -20,7 +22,7 @@ typedef struct PhysicsObject {
     double rot;
 } PhysicsObject;
 
-PhysicsObject* create_object(void* graphics_object, int type, bool is_collidable, double x, double y, double vx, double vy, double ax, double ay);
+PhysicsObject* create_object(void* graphics_object, int type, bool is_collidable, bool is_movable, double x, double y, double vx, double vy, double ax, double ay);
 
 void update_object_graphics(PhysicsObject *object);
 void update_object(PhysicsObject *object, double delta_time);
@@ -39,6 +41,13 @@ void set_acceleration(PhysicsObject *object, double ax, double ay);
 
 void set_rotation(PhysicsObject *object, double rot);
 
-void collision_detection(PhysicsObject *object, PhysicsObject **other_objects);
+void collision_detection(PhysicsObject *object, int object_index, PhysicsObject **other_objects, int objects_length, int start_index);
+
+bool check_collision_rects(PhysicsObject obj1, PhysicsObject obj2);
+bool check_collision_rect_circle(PhysicsObject obj1, PhysicsObject obj2);
+bool check_collision_rect_image(PhysicsObject obj1, PhysicsObject obj2);
+bool check_collision_circles(PhysicsObject obj1, PhysicsObject obj2);
+bool check_collision_circle_image(PhysicsObject obj1, PhysicsObject obj2);
+bool check_collision_images(PhysicsObject obj1, PhysicsObject obj2);
 
 #endif //EE200_PHYSICS_OBJECT_H

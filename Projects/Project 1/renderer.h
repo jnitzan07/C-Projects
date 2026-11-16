@@ -42,6 +42,7 @@ Rect* add_rect(int x, int y, int width, int height, Color color);
 Circle* add_circle(int cx, int cy, double radius, Color color);
 RenderedImage* add_image(Texture2D *texture, int x, int y, double scale, Color tint);
 
+void free_textures();
 void init_objects();
 void render();
 
